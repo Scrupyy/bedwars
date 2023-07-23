@@ -1,0 +1,9 @@
+main: de.scrupy.bedwars.BedWars
+name: BedWars
+version: '1.0'
+description: BedWars Gamemode by Scrupy
+author: Scrupy
+website: scrupy.de
+api-version: 1.20
+
+commands:

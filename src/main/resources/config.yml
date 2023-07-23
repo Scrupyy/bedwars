@@ -1,0 +1,31 @@
+# Configuration for the BedWars game
+
+messages:
+  # Prefix for all in-game messages
+  prefix: "&c&lBedWars &8>> &7"
+
+  # Message displayed when a player joins the lobby
+  # {0} placeholder will be replaced with the player's name
+  playerJoinLobbyMessage: "%p &a{0} &7joined the game."
+
+  # Message shown to a player after they join a team
+  # {0} placeholder will be replaced with the colored team name
+  joinTeamMessage: "%p you entered team {0}"
+
+  # Message shown to a player when they attempt to join a team they are already part of
+  alreadyJoinedTeamMessage: "%p you already joined this team."
+
+names:
+  # Title for the Team Selection GUI
+  teamSelectionGuiTitle: "&6&lTeam-Selector"
+
+  # Format for each element representing a team in the GUI
+  # %s placeholder will be replaced with the players name
+  teamSelectionItemFormat: "§8> %s"
+
+settings:
+  # Number of available teams in the game (min 2 and max 8 teams)
+  teamAmount: 4
+
+  # Maximum number of players that can join a team (min 1 player per team)
+  teamPlayers: 2
