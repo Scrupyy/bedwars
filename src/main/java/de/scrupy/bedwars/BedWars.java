@@ -3,6 +3,7 @@ package de.scrupy.bedwars;
 import de.scrupy.bedwars.config.GameSettingsConfig;
 import de.scrupy.bedwars.listener.*;
 import de.scrupy.bedwars.player.PlayerHandler;
+import de.scrupy.bedwars.team.PlayerTeamHandler;
 import de.scrupy.bedwars.team.TeamManager;
 import de.scrupy.bedwars.team.TeamSelectionGui;
 import org.bukkit.plugin.PluginManager;
@@ -22,6 +23,7 @@ public class BedWars extends JavaPlugin {
         PlayerHandler playerHandler = new PlayerHandler();
         TeamManager teamManager = new TeamManager(new GameSettingsConfig());
         TeamSelectionGui teamSelectionGui = new TeamSelectionGui(teamManager);
+        PlayerTeamHandler playerTeamHandler = new PlayerTeamHandler();
 
         // register listener
         PluginManager pluginManager = getServer().getPluginManager();
@@ -30,7 +32,7 @@ public class BedWars extends JavaPlugin {
         pluginManager.registerEvents(new PlayerQuitListener(playerHandler), this);
         pluginManager.registerEvents(new GameStateDependentListener(), this);
         pluginManager.registerEvents(new LobbyItemListener(teamSelectionGui), this);
-        pluginManager.registerEvents(new TeamSelectionGuiListener(teamManager, teamSelectionGui), this);
+        pluginManager.registerEvents(new TeamSelectionGuiListener(teamSelectionGui, playerTeamHandler), this);
     }
 
     public String getPrefix() {
