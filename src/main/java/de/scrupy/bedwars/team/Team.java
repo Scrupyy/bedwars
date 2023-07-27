@@ -46,12 +46,12 @@ public class Team {
         return maxPlayers;
     }
 
-    public void addPlayer(Player player) {
+    protected void addPlayer(Player player) {
         if (player != null && !players.contains(player))
             players.add(player);
     }
 
-    public void removePlayer(Player player) {
+    protected void removePlayer(Player player) {
         if (player != null)
             players.remove(player);
     }

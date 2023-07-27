@@ -1,7 +1,8 @@
 package de.scrupy.bedwars.listener;
 
+import de.scrupy.bedwars.Game;
+import de.scrupy.bedwars.GameState;
 import de.scrupy.bedwars.team.PlayerTeamHandler;
-import de.scrupy.bedwars.team.Team;
 import de.scrupy.bedwars.team.TeamSelectionGui;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -21,9 +22,8 @@ public class PlayerQuitListener implements Listener {
     public void onQuit(PlayerQuitEvent playerQuitEvent) {
         Player player = playerQuitEvent.getPlayer();
 
-        Team team = playerTeamHandler.getPlayerTeam(player);
-        if (team != null) {
-            team.removePlayer(player);
+        if (Game.getInstance().getGameState() == GameState.LOBBY) {
+            playerTeamHandler.removePlayerFromTeam(player);
             teamSelectionGui.updateGui();
         }
     }

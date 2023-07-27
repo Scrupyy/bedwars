@@ -18,24 +18,24 @@ public class PlayerTeamHandler {
     public void addPlayerToTeam(Team team, Player player) {
         if (team.contains(player))
             return;
-        removePlayerFromCurrentTeam(player);
+        removePlayerFromTeam(player);
         team.addPlayer(player);
         playerTeams.put(player, team);
         PlayerJoinTeamEvent playerJoinTeamEvent = new PlayerJoinTeamEvent(player, team);
         Bukkit.getPluginManager().callEvent(playerJoinTeamEvent);
     }
 
-    @Nullable
-    public Team getPlayerTeam(Player player) {
-        return playerTeams.get(player);
-    }
-
-    private void removePlayerFromCurrentTeam(Player player) {
+    public void removePlayerFromTeam(Player player) {
         if (playerTeams.containsKey(player)) {
             Team currentTeam = playerTeams.get(player);
             if (currentTeam != null) {
                 currentTeam.removePlayer(player);
             }
         }
+    }
+
+    @Nullable
+    public Team getPlayerTeam(Player player) {
+        return playerTeams.get(player);
     }
 }
