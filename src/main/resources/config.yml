@@ -4,6 +4,9 @@ messages:
   # Prefix for all in-game messages
   prefix: "&c&lBedWars &8>> &7"
 
+  # Message shown up when player joins the server while game is in lobby state
+  playerJoinMessage: "%p §a{0} §7joined the game."
+
   # Message displayed when a player joins the lobby
   # {0} placeholder will be replaced with the player's name
   playerJoinLobbyMessage: "%p &a{0} &7joined the game."
