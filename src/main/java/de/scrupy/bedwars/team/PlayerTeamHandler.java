@@ -1,5 +1,7 @@
 package de.scrupy.bedwars.team;
 
+import de.scrupy.bedwars.event.PlayerJoinTeamEvent;
+import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 
 import javax.annotation.Nullable;
@@ -19,6 +21,8 @@ public class PlayerTeamHandler {
         removePlayerFromCurrentTeam(player);
         team.addPlayer(player);
         playerTeams.put(player, team);
+        PlayerJoinTeamEvent playerJoinTeamEvent = new PlayerJoinTeamEvent(player, team);
+        Bukkit.getPluginManager().callEvent(playerJoinTeamEvent);
     }
 
     @Nullable

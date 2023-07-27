@@ -3,7 +3,6 @@ package de.scrupy.bedwars.listener;
 import de.scrupy.bedwars.config.GameConfig;
 import de.scrupy.bedwars.team.PlayerTeamHandler;
 import de.scrupy.bedwars.team.Team;
-import de.scrupy.bedwars.team.TeamManager;
 import de.scrupy.bedwars.team.TeamSelectionGui;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -38,7 +37,6 @@ public class TeamSelectionGuiListener implements Listener {
                 } else {
                     playerTeamHandler.addPlayerToTeam(team, player);
                     player.sendMessage(GameConfig.getInstance().getMessage("joinTeamMessage", team.getColoredName()));
-                    teamSelectionGui.updateGui();
                 }
             }
         }

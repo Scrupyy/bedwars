@@ -1,7 +1,10 @@
 package de.scrupy.bedwars.listener;
 
 import de.scrupy.bedwars.BedWars;
+import de.scrupy.bedwars.Game;
+import de.scrupy.bedwars.GameState;
 import de.scrupy.bedwars.player.PlayerHandler;
+import de.scrupy.bedwars.scoreboard.LobbyScoreboard;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;

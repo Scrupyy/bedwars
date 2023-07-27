@@ -33,6 +33,7 @@ public class BedWars extends JavaPlugin {
         pluginManager.registerEvents(new GameStateDependentListener(), this);
         pluginManager.registerEvents(new LobbyItemListener(teamSelectionGui), this);
         pluginManager.registerEvents(new TeamSelectionGuiListener(teamSelectionGui, playerTeamHandler), this);
+        pluginManager.registerEvents(new PlayerJoinTeamListener(teamSelectionGui), this);
     }
 
     public String getPrefix() {
