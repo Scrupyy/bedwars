@@ -29,7 +29,7 @@ public class BedWars extends JavaPlugin {
         PluginManager pluginManager = getServer().getPluginManager();
 
         pluginManager.registerEvents(new PlayerJoinListener(playerHandler), this);
-        pluginManager.registerEvents(new PlayerQuitListener(playerHandler), this);
+        pluginManager.registerEvents(new PlayerQuitListener(playerTeamHandler, teamSelectionGui), this);
         pluginManager.registerEvents(new GameStateDependentListener(), this);
         pluginManager.registerEvents(new LobbyItemListener(teamSelectionGui), this);
         pluginManager.registerEvents(new TeamSelectionGuiListener(teamSelectionGui, playerTeamHandler), this);

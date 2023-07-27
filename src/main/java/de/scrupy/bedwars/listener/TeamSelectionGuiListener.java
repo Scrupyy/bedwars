@@ -16,7 +16,7 @@ public class TeamSelectionGuiListener implements Listener {
 
     public TeamSelectionGuiListener(TeamSelectionGui teamSelectionGui, PlayerTeamHandler playerTeamHandler) {
         this.teamSelectionGui = teamSelectionGui;
-        this.playerTeamHandler = new PlayerTeamHandler();
+        this.playerTeamHandler = playerTeamHandler;
     }
 
     @EventHandler

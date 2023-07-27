@@ -7,22 +7,9 @@ import de.scrupy.bedwars.scoreboard.LobbyScoreboard;
 import de.scrupy.bedwars.util.PlayerAttributes;
 import org.bukkit.entity.Player;
 
-import javax.annotation.Nullable;
-
 public class PlayerHandler {
-    private final GamePlayerRepository gamePlayerRepository;
-
-    public PlayerHandler() {
-        gamePlayerRepository = new GamePlayerRepository();
-    }
-
     public void handleJoin(Player player) {
         setupPlayer(player);
-        gamePlayerRepository.addPlayer(player);
-    }
-
-    public void handleQuit(Player player) {
-        gamePlayerRepository.removePlayer(player);
     }
 
     private void setupPlayer(Player player) {
@@ -35,10 +22,5 @@ public class PlayerHandler {
         } else {
             PlayerAttributes.setAttributes(player, true);
         }
-    }
-
-    @Nullable
-    public GamePlayer getGamePlayer(Player player) {
-        return gamePlayerRepository.getGamePlayer(player);
     }
 }
