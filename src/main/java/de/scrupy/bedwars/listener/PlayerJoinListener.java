@@ -1,11 +1,9 @@
 package de.scrupy.bedwars.listener;
 
-import de.scrupy.bedwars.BedWars;
 import de.scrupy.bedwars.Game;
 import de.scrupy.bedwars.GameState;
 import de.scrupy.bedwars.config.GameConfig;
 import de.scrupy.bedwars.player.PlayerHandler;
-import de.scrupy.bedwars.scoreboard.LobbyScoreboard;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -25,6 +23,9 @@ public class PlayerJoinListener implements Listener {
         String playerName = player.getName();
 
         playerHandler.handleJoin(player);
-        joinEvent.setJoinMessage(GameConfig.getInstance().getMessage("playerJoinMessage", playerName));
+
+        if (Game.getInstance().getGameState() == GameState.LOBBY) {
+            joinEvent.setJoinMessage(GameConfig.getInstance().getMessage("playerJoinMessage", playerName));
+        }
     }
 }
