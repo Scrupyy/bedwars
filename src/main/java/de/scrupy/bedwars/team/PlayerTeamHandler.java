@@ -31,6 +31,7 @@ public class PlayerTeamHandler {
             if (currentTeam != null) {
                 currentTeam.removePlayer(player);
             }
+            playerTeams.remove(player);
         }
     }
 
