@@ -11,7 +11,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 public class BedWars extends JavaPlugin {
     private static BedWars instance;
-    private final String prefix = "§c§lBedWars §8>> §7";
+
     @Override
     public void onEnable() {
         instance = this;
@@ -34,10 +34,6 @@ public class BedWars extends JavaPlugin {
         pluginManager.registerEvents(new LobbyItemListener(teamSelectionGui), this);
         pluginManager.registerEvents(new TeamSelectionGuiListener(teamSelectionGui, playerTeamHandler), this);
         pluginManager.registerEvents(new PlayerJoinTeamListener(teamSelectionGui), this);
-    }
-
-    public String getPrefix() {
-        return prefix;
     }
 
     public static BedWars getInstance() {
