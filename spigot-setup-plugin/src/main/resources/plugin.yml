@@ -1,0 +1,11 @@
+main: de.scrupy.setup.BedWarsSetup
+name: BedWars-Setup
+version: '1.0'
+description: Plugin for BedWars map setup
+author: Scrupy
+website: scrupy.de
+api-version: 1.20
+depend: [WorldEdit]
+
+commands:
+  setup:

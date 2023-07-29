@@ -1,0 +1,6 @@
+plugins {
+    id 'java'
+}
+
+group 'de.scrupy'
+version '1.0-SNAPSHOT'

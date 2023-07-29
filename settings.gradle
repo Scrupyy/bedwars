@@ -1,2 +1,5 @@
 rootProject.name = 'BedWars'
+include 'spigot-plugin'
+include 'common'
+include 'spigot-setup-plugin'
 
