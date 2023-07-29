@@ -1,14 +1,14 @@
 package de.scrupy.setup.map;
 
 import de.scrupy.common.map.GameMapLocation;
-import de.scrupy.common.map.Map;
+import de.scrupy.common.map.GameMap;
 import org.bukkit.entity.Player;
 
 public class MapResultMessage {
-    private final Map gameMap;
+    private final GameMap gameMap;
     private final Player player;
 
-    public MapResultMessage(Map gameMap, Player player) {
+    public MapResultMessage(GameMap gameMap, Player player) {
         this.gameMap = gameMap;
         this.player = player;
     }

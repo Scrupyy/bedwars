@@ -1,7 +1,7 @@
 package de.scrupy.setup.map;
 
 import com.sk89q.worldedit.regions.CuboidRegion;
-import de.scrupy.common.map.Map;
+import de.scrupy.common.map.GameMap;
 import de.scrupy.common.map.GameMapLocation;
 import de.scrupy.setup.util.BlockFaceUtil;
 import org.bukkit.Material;
@@ -13,12 +13,12 @@ import org.bukkit.block.Skull;
 public class MapSetup {
     private final CuboidRegion cuboidRegion;
     private final World world;
-    private final Map gameMap;
+    private final GameMap gameMap;
 
-    public MapSetup(String name, String builderName, CuboidRegion cuboidRegion, World world) {
+    public MapSetup(CuboidRegion cuboidRegion, World world) {
         this.cuboidRegion = cuboidRegion;
         this.world = world;
-        this.gameMap = new GameMapBuilder(name, builderName);
+        this.gameMap = new GameMapBuilder();
         setupMap();
     }
 
@@ -76,7 +76,7 @@ public class MapSetup {
         return new GameMapLocation(this.world.getName(), block.getX() + 0.5, block.getY(), block.getX() + 0.5);
     }
 
-    public Map getGameMap() {
+    public GameMap getGameMap() {
         return gameMap;
     }
 }

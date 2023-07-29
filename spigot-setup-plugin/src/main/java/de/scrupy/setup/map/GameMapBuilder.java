@@ -1,23 +1,22 @@
 package de.scrupy.setup.map;
 
-import de.scrupy.common.map.Map;
+import de.scrupy.common.map.GameMap;
 import de.scrupy.common.map.GameMapLocation;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-public class GameMapBuilder implements Map {
-    private final String name;
-    private final String builderName;
+public class GameMapBuilder implements GameMap {
+    private String name;
+    private String builderName;
+    private int teamPlayers;
     private final List<GameMapLocation> goldSpawner;
     private final List<GameMapLocation> ironSpawner;
     private final List<GameMapLocation> bronzeSpawner;
     private final java.util.Map<String, GameMapLocation> teamSpawns;
 
-    public GameMapBuilder(String name, String builderName) {
-        this.name = name;
-        this.builderName = builderName;
+    public GameMapBuilder() {
         this.goldSpawner = new ArrayList<>();
         this.ironSpawner = new ArrayList<>();
         this.bronzeSpawner = new ArrayList<>();
@@ -32,6 +31,26 @@ public class GameMapBuilder implements Map {
     @Override
     public String getBuilderName() {
         return builderName;
+    }
+
+    @Override
+    public int getTeamPlayers() {
+        return teamPlayers;
+    }
+
+    @Override
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    @Override
+    public void setBuilderName(String builderName) {
+        this.builderName = builderName;
+    }
+
+    @Override
+    public void setTeamPlayers(int teamPlayers) {
+        this.teamPlayers = teamPlayers;
     }
 
     @Override
