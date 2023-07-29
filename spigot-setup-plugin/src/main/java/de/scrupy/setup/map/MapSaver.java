@@ -24,10 +24,10 @@ public class MapSaver {
     }
 
     public boolean gameMapExists(GameMap gameMap) {
-        return new File(getFileName(gameMap)).exists();
+        return new File(getFilePath(gameMap)).exists();
     }
 
-    private String getFileName(GameMap gameMap) {
+    public String getFileName(GameMap gameMap) {
         return gameMap.getName() + "_" + getTeamAmount(gameMap) + "x" + gameMap.getTeamPlayers();
     }
 
@@ -42,7 +42,7 @@ public class MapSaver {
     private void createMapOutputFolder() {
         File mapFolder = new File(PATH);
         if (!mapFolder.exists()) {
-            if (!mapFolder.mkdir()) {
+            if (!mapFolder.mkdirs()) {
                 Bukkit.getLogger().warning("Error while creating maps output folder: " + PATH);
             }
         }

@@ -15,6 +15,17 @@ public class MapResultMessage {
 
     public void sendResult() {
         sendTeamSpawnsInfo();
+        sendSpawnerInfo();
+    }
+
+    private void sendSpawnerInfo() {
+        player.sendMessage("§7---- §6§lRegistered spawners §7----");
+        player.sendMessage(" ");
+        player.sendMessage("§6§lGold §7Spawner: §e§l" + gameMap.getGoldSpawner().size());
+        player.sendMessage("§f§lIron §7Spawner: §e§l" + gameMap.getIronSpawner().size());
+        player.sendMessage("§c§lBronze §7Spawner: §e§l" + gameMap.getBronzeSpawner().size());
+        player.sendMessage(" ");
+        player.sendMessage("§7--------------------------------");
     }
 
     private void sendTeamSpawnsInfo() {

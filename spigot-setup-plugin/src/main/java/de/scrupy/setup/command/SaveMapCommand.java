@@ -27,8 +27,14 @@ public class SaveMapCommand implements CommandExecutor {
             return true;
         }
 
+        if (!player.hasPermission("bedwars.setup")) {
+            player.sendMessage(BedWarsSetup.getPrefix() + "§cNot enough permissions.");
+            return true;
+        }
+
         if (args.length != 3) {
-            sender.sendMessage(BedWarsSetup.getPrefix()+ "§cUse /saveMap <map-name> <builder-name> <team-players-size>");
+            player.sendMessage(BedWarsSetup.getPrefix()+ "§cUse /saveMap <map-name> <builder-name> <team-players-size>");
+            return true;
         }
 
         GameMap gameMap = playerSession.getGameMap(player);
@@ -50,6 +56,7 @@ public class SaveMapCommand implements CommandExecutor {
 
                 try {
                     mapSaver.saveGameMapToFile(gameMap);
+                    player.sendMessage(BedWarsSetup.getPrefix() + "§asuccessfully §7saved map with file name: §e§l" + mapSaver.getFileName(gameMap));
                 } catch (IOException e) {
                     player.sendMessage(BedWarsSetup.getPrefix() + "§cError while saving map file.");
                     e.printStackTrace();

@@ -42,46 +42,15 @@ public class SetupCommand implements CommandExecutor {
             CuboidRegion cuboidRegion = new CuboidRegion(positionOne, positionTwo);
 
             MapSetup mapSetup = new MapSetup(cuboidRegion, player.getWorld());
+
+            MapResultMessage mapResultMessage = new MapResultMessage(mapSetup.getGameMap(), player);
+            mapResultMessage.sendResult();
+
             playerSession.put(player, mapSetup.getGameMap());
         } catch (IncompleteRegionException exception) {
             player.sendMessage(BedWarsSetup.getPrefix() + "You need to select two locations.");
             return true;
         }
-
-        /*
-        if (args.length != 3) {
-            player.sendMessage(BedWarsSetup.getPrefix() + "§cUse /setup <map-name> <builder-name> <team-players-size>");
-            return true;
-        }
-
-        LocalSession localSession = BedWarsSetup.getInstance().getWorldEditPlugin().getSession(player);
-
-        try {
-            try {
-                int teamPlayers = Integer.parseInt(args[2]);
-
-                BlockVector3 positionOne = localSession.getSelection().getMaximumPoint();
-                BlockVector3 positionTwo = localSession.getSelection().getMinimumPoint();
-                CuboidRegion cuboidRegion = new CuboidRegion(positionOne, positionTwo);
-
-                String mapName = args[0];
-                String builderName = args[1];
-
-                MapSetup mapSetup = new MapSetup(mapName, builderName, teamPlayers, cuboidRegion, player.getWorld());
-
-                MapResultMessage mapResultMessage = new MapResultMessage(mapSetup.getGameMap(), player);
-                mapResultMessage.sendResult();
-
-            } catch (NumberFormatException exception) {
-                player.sendMessage(BedWarsSetup.getPrefix() + "§cteam-players-size has to be an number.");
-                return true;
-            }
-        } catch (IncompleteRegionException e) {
-            player.sendMessage(BedWarsSetup.getPrefix() + "You need to select two locations.");
-            return true;
-        }
-        */
-
         return true;
     }
 }
