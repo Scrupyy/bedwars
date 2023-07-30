@@ -29,6 +29,9 @@ names:
   scoreboardTitle: " &f&lBedWars "
   scoreboardCurrentTeam: "&7Team:"
   scoreboardCurrentTeamName: "&8> %s"
+  scoreboardSelectedMap: "&7Map:"
+  scoreboardSelectedMapName: "&e&l%s"
+  scoreboardPlaceholder: "&c&lX"
 
 settings:
   # Number of available teams in the game (min 2 and max 8 teams)
