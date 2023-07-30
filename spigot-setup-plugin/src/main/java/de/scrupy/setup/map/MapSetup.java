@@ -69,11 +69,11 @@ public class MapSetup {
     }
 
     private GameMapLocation createGameMapLocation(Block block, float yaw, float pitch) {
-        return new GameMapLocation(this.world.getName(), block.getX() + 0.5, block.getY(), block.getX() + 0.5, yaw, pitch);
+        return new GameMapLocation(this.world.getName(), block.getX() + 0.5, block.getY(), block.getZ() + 0.5, yaw, pitch);
     }
 
     private GameMapLocation createGameMapLocation(Block block) {
-        return new GameMapLocation(this.world.getName(), block.getX() + 0.5, block.getY(), block.getX() + 0.5);
+        return new GameMapLocation(this.world.getName(), block.getX() + 0.5, block.getY(), block.getZ() + 0.5);
     }
 
     public GameMap getGameMap() {

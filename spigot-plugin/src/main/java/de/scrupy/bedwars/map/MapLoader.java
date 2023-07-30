@@ -8,6 +8,7 @@ import javax.annotation.Nullable;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.io.IOException;
 
 public class MapLoader {
     private static final String MAP_FOLDER_PATH = BedWars.getInstance().getDataFolder() + "/maps";
@@ -20,11 +21,11 @@ public class MapLoader {
     @Nullable
     public BedWarsMap loadMap(String name, int teamAmount, int teamPlayers) {
         String fileName = getFileName(name, teamAmount, teamPlayers);
-        File mapFile = new File(fileName);
+        File mapFile = new File(MAP_FOLDER_PATH + "/" + fileName);
         if (mapFile.exists()) {
             try {
                 return loadFromFile(mapFile);
-            } catch (FileNotFoundException e) {
+            } catch (IOException e) {
                 e.printStackTrace();
                 return null;
             }
@@ -34,9 +35,11 @@ public class MapLoader {
         return null;
     }
 
-    private BedWarsMap loadFromFile(File file) throws FileNotFoundException {
+    private BedWarsMap loadFromFile(File file) throws IOException {
         Gson gson = new Gson();
-        return gson.fromJson(new FileReader(file), BedWarsMap.class);
+        try (FileReader fileReader = new FileReader(file)) {
+            return gson.fromJson(fileReader, BedWarsMap.class);
+        }
     }
 
     private void checkForAvailableMaps() {

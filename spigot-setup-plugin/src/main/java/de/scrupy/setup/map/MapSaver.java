@@ -19,7 +19,9 @@ public class MapSaver {
     public void saveGameMapToFile(GameMap gameMap) throws IOException {
         if (!gameMapExists(gameMap)) {
             Gson gson = new Gson();
-            gson.toJson(gameMap, new FileWriter(getFilePath(gameMap)));
+            FileWriter fileWriter = new FileWriter(getFilePath(gameMap));
+            gson.toJson(gameMap, fileWriter);
+            fileWriter.close();
         }
     }
 
