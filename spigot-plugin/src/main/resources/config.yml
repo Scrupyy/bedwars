@@ -36,3 +36,6 @@ settings:
 
   # Maximum number of players that can join a team (min 1 player per team)
   teamPlayers: 2
+
+  # Name for the map file. Change this to load map correct.
+  mapName: "default_map"

@@ -10,7 +10,6 @@ import java.util.Collections;
 import java.util.List;
 
 public class TeamManager {
-    private final GameSettingsConfig gameSettingsConfig;
     private final List<Team> teams;
     private final List<Team> availableTeams;
 
@@ -19,8 +18,7 @@ public class TeamManager {
     private static final int DEFAULT_TEAM_AMOUNT = 4;
     private static final int DEFAULT_TEAM_PLAYERS = 1;
 
-    public TeamManager(GameSettingsConfig gameSettingsConfig) {
-        this.gameSettingsConfig = gameSettingsConfig;
+    public TeamManager() {
         this.teams = new ArrayList<>();
         this.availableTeams = new ArrayList<>();
         initializeTeam();
@@ -39,8 +37,8 @@ public class TeamManager {
     }
 
     private void initializeAvailableTeams() {
-        int teamAmount = gameSettingsConfig.getInteger(TEAM_AMOUNT_KEY);
-        int teamPlayers = gameSettingsConfig.getInteger(TEAM_PLAYERS_KEY);
+        int teamAmount = GameSettingsConfig.getInstance().getInteger(TEAM_AMOUNT_KEY);
+        int teamPlayers = GameSettingsConfig.getInstance().getInteger(TEAM_PLAYERS_KEY);
 
         if (teamAmount < 2 || teamAmount > 8) {
             teamAmount = DEFAULT_TEAM_AMOUNT;
