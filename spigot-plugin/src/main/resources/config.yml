@@ -42,3 +42,8 @@ settings:
 
   # Name for the map file. Change this to load map correct.
   mapName: "default_map"
+
+  # Time values for spawning materials. 1 second = 20 (ticks)
+  goldSpawnerTime: 200
+  ironSpawnerTime: 60
+  bronzeSpawnerTime: 20

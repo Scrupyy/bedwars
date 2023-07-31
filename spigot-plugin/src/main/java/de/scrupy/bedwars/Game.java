@@ -5,6 +5,8 @@ import de.scrupy.bedwars.map.MapLoader;
 import de.scrupy.common.map.GameMap;
 import org.bukkit.Bukkit;
 
+import javax.annotation.Nullable;
+
 public class Game {
     private static Game instance;
     private final GameSettingsConfig gameSettingsConfig;
@@ -44,6 +46,7 @@ public class Game {
         return gameState;
     }
 
+    @Nullable
     public GameMap getGameMap() {
         return gameMap;
     }

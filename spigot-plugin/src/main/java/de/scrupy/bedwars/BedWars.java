@@ -1,6 +1,5 @@
 package de.scrupy.bedwars;
 
-import de.scrupy.bedwars.config.GameSettingsConfig;
 import de.scrupy.bedwars.listener.*;
 import de.scrupy.bedwars.player.PlayerHandler;
 import de.scrupy.bedwars.team.PlayerTeamHandler;
