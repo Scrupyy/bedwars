@@ -30,11 +30,11 @@ public class MapTeleport {
         List<Team> teams = teamManager.getAvailableTeams();
         Map<String, GameMapLocation> teamSpawns = new HashMap<>(gameMap.getTeamSpawns());
 
-        teleportTeamsToColor(teams, teamSpawns);
-        teleportTeamsRandom(teams, teamSpawns);
+        teleportTeamsToSpawnByColor(teams, teamSpawns);
+        teleportTeamsToRandomSpawn(teams, teamSpawns);
     }
 
-    private void teleportTeamsToColor(List<Team> teams, Map<String, GameMapLocation> teamSpawns) {
+    private void teleportTeamsToSpawnByColor(List<Team> teams, Map<String, GameMapLocation> teamSpawns) {
         List<Team> teleportedTeams = new ArrayList<>();
 
         for (Team team : teams) {
@@ -50,7 +50,7 @@ public class MapTeleport {
         teleportedTeams.forEach(team -> teamSpawns.remove(team.getColoredWool().name()));
     }
 
-    private void teleportTeamsRandom(List<Team> teams, Map<String, GameMapLocation> teamSpawns) {
+    private void teleportTeamsToRandomSpawn(List<Team> teams, Map<String, GameMapLocation> teamSpawns) {
         List<Team> teleportedTeams = new ArrayList<>();
 
         for (Team team : teams) {
