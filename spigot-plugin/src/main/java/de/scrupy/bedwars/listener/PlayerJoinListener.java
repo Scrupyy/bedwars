@@ -3,7 +3,10 @@ package de.scrupy.bedwars.listener;
 import de.scrupy.bedwars.Game;
 import de.scrupy.bedwars.GameState;
 import de.scrupy.bedwars.config.GameConfig;
+import de.scrupy.bedwars.config.GameSettingsConfig;
 import de.scrupy.bedwars.player.PlayerHandler;
+import de.scrupy.bedwars.util.Countdown;
+import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -24,8 +27,19 @@ public class PlayerJoinListener implements Listener {
 
         playerHandler.handleJoin(player);
 
-        if (Game.getInstance().getGameState() == GameState.LOBBY) {
+        Game game = Game.getInstance();
+
+        if (game.getGameState() == GameState.LOBBY) {
+            if (!game.getCountdown().isRunning() && shouldStartLobbyCountdown()) {
+                game.getCountdown().start();
+            }
+
             joinEvent.setJoinMessage(GameConfig.getInstance().getMessage("playerJoinMessage", playerName));
         }
+    }
+
+    public boolean shouldStartLobbyCountdown() {
+        int playersRequired = GameSettingsConfig.getInstance().getInteger("playersToStartGame");
+        return Bukkit.getOnlinePlayers().size() >= playersRequired;
     }
 }

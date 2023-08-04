@@ -1,7 +1,9 @@
 package de.scrupy.bedwars;
 
 import de.scrupy.bedwars.config.GameSettingsConfig;
+import de.scrupy.bedwars.countdown.LobbyCountdown;
 import de.scrupy.bedwars.map.MapLoader;
+import de.scrupy.bedwars.util.Countdown;
 import de.scrupy.common.map.GameMap;
 import org.bukkit.Bukkit;
 
@@ -12,10 +14,12 @@ public class Game {
     private final GameSettingsConfig gameSettingsConfig;
     private GameState gameState;
     private GameMap gameMap;
+    private Countdown countdown;
 
     private Game() {
         this.gameState = GameState.LOBBY;
         this.gameSettingsConfig = GameSettingsConfig.getInstance();
+        this.countdown = new LobbyCountdown(gameSettingsConfig.getInteger("lobbyCountdownTime"));
         loadMap();
     }
 
@@ -49,6 +53,10 @@ public class Game {
     @Nullable
     public GameMap getGameMap() {
         return gameMap;
+    }
+
+    public Countdown getCountdown() {
+        return countdown;
     }
 
     public static synchronized Game getInstance() {

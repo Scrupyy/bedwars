@@ -8,6 +8,7 @@ public abstract class Countdown {
     private final int time;
     private int remainingTime;
     private BukkitTask runnable;
+    private boolean isRunning;
 
     public Countdown(int time) {
         this.time = time;
@@ -26,12 +27,14 @@ public abstract class Countdown {
                 }
             }
         }.runTaskTimer(BedWars.getInstance(), 0L, 20L);
+        isRunning = true;
     }
 
     public void stop() {
         if (runnable != null) {
             runnable.cancel();
             onStop();
+            isRunning = false;
         }
     }
 
@@ -46,6 +49,10 @@ public abstract class Countdown {
 
     public int getRemainingTime() {
         return remainingTime;
+    }
+
+    public boolean isRunning() {
+        return isRunning;
     }
 
     public abstract void onStart();
