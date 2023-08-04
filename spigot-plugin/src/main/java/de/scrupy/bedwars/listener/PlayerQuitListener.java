@@ -2,6 +2,7 @@ package de.scrupy.bedwars.listener;
 
 import de.scrupy.bedwars.Game;
 import de.scrupy.bedwars.GameState;
+import de.scrupy.bedwars.scoreboard.GameScoreboard;
 import de.scrupy.bedwars.team.PlayerTeamHandler;
 import de.scrupy.bedwars.team.TeamSelectionGui;
 import org.bukkit.entity.Player;

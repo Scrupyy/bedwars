@@ -17,11 +17,12 @@ public abstract class GameScoreboard {
         this.scoreboard = Bukkit.getScoreboardManager().getNewScoreboard();
         this.objective = scoreboard.registerNewObjective("scorboard", Criteria.DUMMY, GameConfig.getInstance().getName("scoreboardTitle"));
         this.objective.setDisplaySlot(DisplaySlot.SIDEBAR);
+        registerTeams();
     }
 
     private void registerTeams() {
         teamManager.getAvailableTeams().forEach(team -> {
-            scoreboard.registerNewTeam(team.getName());
+            scoreboard.registerNewTeam(team.getName()).setPrefix(team.getColoredName() + " §8| ");
         });
     }
 

@@ -1,5 +1,7 @@
 package de.scrupy.bedwars.listener;
 
+import de.scrupy.bedwars.Game;
+import de.scrupy.bedwars.GameState;
 import de.scrupy.bedwars.config.GameConfig;
 import de.scrupy.bedwars.team.PlayerTeamHandler;
 import de.scrupy.bedwars.team.Team;
@@ -26,6 +28,9 @@ public class TeamSelectionGuiListener implements Listener {
             ItemStack itemStack = clickEvent.getCurrentItem();
 
             if (itemStack == null)
+                return;
+
+            if (Game.getInstance().getGameState() != GameState.LOBBY)
                 return;
 
             Player player = (Player) clickEvent.getWhoClicked();
