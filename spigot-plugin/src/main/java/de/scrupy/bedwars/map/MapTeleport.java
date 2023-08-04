@@ -17,9 +17,9 @@ public class MapTeleport {
     private final TeamManager teamManager;
     private final GameMap gameMap;
 
-    public MapTeleport(TeamManager teamManager) {
+    public MapTeleport(TeamManager teamManager, GameMap gameMap) {
         this.teamManager = teamManager;
-        this.gameMap = Game.getInstance().getGameMap();
+        this.gameMap = gameMap;
     }
 
     public void teleportAllTeams() {

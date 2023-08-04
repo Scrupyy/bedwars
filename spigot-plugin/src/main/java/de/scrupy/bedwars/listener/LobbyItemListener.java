@@ -11,14 +11,16 @@ import org.bukkit.event.player.PlayerInteractEvent;
 
 public class LobbyItemListener implements Listener {
     private final TeamSelectionGui teamSelectionGui;
+    private final Game game;
 
-    public LobbyItemListener(TeamSelectionGui teamSelectionGui) {
+    public LobbyItemListener(TeamSelectionGui teamSelectionGui, Game game) {
         this.teamSelectionGui = teamSelectionGui;
+        this.game = game;
     }
 
     @EventHandler
     public void onInteract(PlayerInteractEvent interactEvent) {
-        if (Game.getInstance().getGameState() != GameState.LOBBY) {
+        if (game.getGameState() != GameState.LOBBY) {
             return;
         }
         interactEvent.setCancelled(true);

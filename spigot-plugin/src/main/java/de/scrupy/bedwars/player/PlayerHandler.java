@@ -9,10 +9,14 @@ import de.scrupy.bedwars.util.PlayerAttributes;
 import org.bukkit.entity.Player;
 
 public class PlayerHandler {
+    private final Game game;
     private final TeamManager teamManager;
+    private final PlayerAttributes playerAttributes;
 
-    public PlayerHandler(TeamManager teamManager) {
+    public PlayerHandler(Game game, TeamManager teamManager) {
+        this.game = game;
         this.teamManager = teamManager;
+        this.playerAttributes = new PlayerAttributes(game);
     }
 
     public void handleJoin(Player player) {
@@ -20,14 +24,14 @@ public class PlayerHandler {
     }
 
     private void setupPlayer(Player player) {
-        if (Game.getInstance().getGameState() == GameState.LOBBY) {
-            LobbyScoreboard lobbyScoreboard = new LobbyScoreboard(teamManager);
+        if (game.getGameState() == GameState.LOBBY) {
+            LobbyScoreboard lobbyScoreboard = new LobbyScoreboard(game.getGameMap(), teamManager);
             lobbyScoreboard.setScoreboard(player);
 
-            PlayerAttributes.setAttributes(player, false);
+            playerAttributes.setAttributes(player, false);
             LobbyItem.setLobbyItems(player);
         } else {
-            PlayerAttributes.setAttributes(player, true);
+            playerAttributes.setAttributes(player, true);
         }
     }
 }

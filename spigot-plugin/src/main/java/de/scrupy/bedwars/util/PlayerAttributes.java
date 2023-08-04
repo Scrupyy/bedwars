@@ -6,25 +6,31 @@ import org.bukkit.GameMode;
 import org.bukkit.entity.Player;
 
 public class PlayerAttributes {
-    public static void setAttributes(Player player, boolean shouldSetAsSpectator) {
+    private final Game game;
+
+    public PlayerAttributes(Game game) {
+        this.game = game;
+    }
+
+    public void setAttributes(Player player, boolean shouldSetAsSpectator) {
         if (shouldSetAsSpectator) {
             setDefaultAttributes(player);
             player.setGameMode(GameMode.ADVENTURE);
             return;
         }
-        if (Game.getInstance().getGameState() == GameState.LOBBY) {
+        if (game.getGameState() == GameState.LOBBY) {
             setDefaultAttributes(player);
             player.setGameMode(GameMode.ADVENTURE);
         }
 
-        if (Game.getInstance().getGameState() == GameState.INGAME) {
+        if (game.getGameState() == GameState.INGAME) {
             setDefaultAttributes(player);
             player.setGameMode(GameMode.SURVIVAL);
         }
 
     }
 
-    private static void setDefaultAttributes(Player player) {
+    private void setDefaultAttributes(Player player) {
         player.setHealth(20);
         player.setFoodLevel(20);
         player.setLevel(0);

@@ -3,6 +3,8 @@ package de.scrupy.bedwars;
 import de.scrupy.bedwars.config.GameSettingsConfig;
 import de.scrupy.bedwars.countdown.LobbyCountdown;
 import de.scrupy.bedwars.map.MapLoader;
+import de.scrupy.bedwars.map.MapTeleport;
+import de.scrupy.bedwars.team.TeamManager;
 import de.scrupy.bedwars.util.Countdown;
 import de.scrupy.common.map.GameMap;
 import org.bukkit.Bukkit;
@@ -10,20 +12,23 @@ import org.bukkit.Bukkit;
 import javax.annotation.Nullable;
 
 public class Game {
-    private static Game instance;
     private final GameSettingsConfig gameSettingsConfig;
+    private final TeamManager teamManager;
+    private final MapTeleport mapTeleport;
     private GameState gameState;
     private GameMap gameMap;
     private Countdown countdown;
 
-    private Game() {
+    public Game(TeamManager teamManager) {
+        this.teamManager = teamManager;
         this.gameState = GameState.LOBBY;
         this.gameSettingsConfig = GameSettingsConfig.getInstance();
-        this.countdown = new LobbyCountdown(gameSettingsConfig.getInteger("lobbyCountdownTime"));
-        loadMap();
+        this.gameMap = loadMap();
+        this.mapTeleport = new MapTeleport(teamManager, gameMap);
+        this.countdown = new LobbyCountdown(gameSettingsConfig.getInteger("lobbyCountdownTime"), mapTeleport);
     }
 
-    private void loadMap() {
+    private GameMap loadMap() {
         MapLoader mapLoader = new MapLoader();
 
         String mapName = gameSettingsConfig.getString("mapName");
@@ -32,9 +37,10 @@ public class Game {
 
         GameMap gameMap = mapLoader.loadMap(mapName, teamAmount, teamPlayers);
         if (gameMap != null) {
-            this.gameMap = gameMap;
+            return gameMap;
         } else {
             Bukkit.getLogger().warning("Map could not be loaded. Check config.yml file for correct configuration of mapName, teamAmount and teamPlayers");
+            return null;
         }
     }
 
@@ -57,12 +63,5 @@ public class Game {
 
     public Countdown getCountdown() {
         return countdown;
-    }
-
-    public static synchronized Game getInstance() {
-        if (instance == null) {
-            instance = new Game();
-        }
-        return instance;
     }
 }

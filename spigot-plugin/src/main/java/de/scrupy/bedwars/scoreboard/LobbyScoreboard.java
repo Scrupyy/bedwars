@@ -1,6 +1,5 @@
 package de.scrupy.bedwars.scoreboard;
 
-import de.scrupy.bedwars.Game;
 import de.scrupy.bedwars.config.GameConfig;
 import de.scrupy.bedwars.team.TeamManager;
 import de.scrupy.common.map.GameMap;
@@ -11,9 +10,11 @@ import org.bukkit.scoreboard.Team;
 public class LobbyScoreboard extends GameScoreboard {
     private static final String CURRENT_TEAM_NAME = "currentTeam";
     private static final String SCOREBOARD_PLACEHOLDER_KEY = "scoreboardPlaceholder";
+    private final GameMap gameMap;
 
-    public LobbyScoreboard(TeamManager teamManager) {
+    public LobbyScoreboard(GameMap gameMap, TeamManager teamManager) {
         super(teamManager);
+        this.gameMap = gameMap;
         addTeams();
         setScores();
     }
@@ -29,7 +30,6 @@ public class LobbyScoreboard extends GameScoreboard {
     }
 
     private String getSelectedMapName() {
-        GameMap gameMap = Game.getInstance().getGameMap();
         if (gameMap != null) {
             return String.format(GameConfig.getInstance().getName("scoreboardSelectedMapName"), gameMap.getName());
         } else {

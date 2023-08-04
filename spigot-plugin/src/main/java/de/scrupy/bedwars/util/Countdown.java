@@ -21,9 +21,10 @@ public abstract class Countdown {
             @Override
             public void run() {
                 remainingTime--;
-                onTick();
                 if (remainingTime == 0) {
                     finish();
+                } else {
+                    onTick();
                 }
             }
         }.runTaskTimer(BedWars.getInstance(), 0L, 20L);

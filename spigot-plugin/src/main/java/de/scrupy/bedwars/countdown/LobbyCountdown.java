@@ -1,6 +1,7 @@
 package de.scrupy.bedwars.countdown;
 
 import de.scrupy.bedwars.config.GameConfig;
+import de.scrupy.bedwars.map.MapTeleport;
 import de.scrupy.bedwars.util.Countdown;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
@@ -8,22 +9,24 @@ import org.bukkit.ChatColor;
 import javax.annotation.Nullable;
 
 public class LobbyCountdown extends Countdown {
-    public LobbyCountdown(int time) {
+    private final MapTeleport mapTeleport;
+
+    public LobbyCountdown(int time, MapTeleport mapTeleport) {
         super(time);
+        this.mapTeleport = mapTeleport;
     }
 
     @Override
-    public void onStart() { }
+    public void onStart() {
+        broadcastRemainingTime(null);
+    }
 
     @Override
     public void onStop() { }
 
     @Override
     public void onTick() {
-        if (getRemainingTime() % 10 == 0)
-            broadcastRemainingTime(null);
-
-        if (getRemainingTime() == 5)
+        if (getRemainingTime() % 10 == 0 || getRemainingTime() == 5)
             broadcastRemainingTime(null);
 
         if (getRemainingTime() == 3)
@@ -37,7 +40,9 @@ public class LobbyCountdown extends Countdown {
     }
 
     @Override
-    public void onFinish() { }
+    public void onFinish() {
+        mapTeleport.teleportAllTeams();
+    }
 
     private void broadcastRemainingTime(@Nullable ChatColor timeColor) {
         String coloredRemainingTime = String.valueOf(getRemainingTime());

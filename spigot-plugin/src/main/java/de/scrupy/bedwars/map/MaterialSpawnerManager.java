@@ -15,8 +15,8 @@ public class MaterialSpawnerManager {
     private final ItemStack bronze, iron, gold;
     private final List<MaterialSpawner> materialSpawners;
 
-    public MaterialSpawnerManager() {
-        this.gameMap = Game.getInstance().getGameMap();
+    public MaterialSpawnerManager(GameMap gameMap) {
+        this.gameMap = gameMap;
         this.bronze = new ItemBuilder(Material.BRICK).setDisplayName("§cBronze").build();
         this.iron = new ItemBuilder(Material.IRON_INGOT).setDisplayName("§fIron").build();
         this.gold = new ItemBuilder(Material.GOLD_INGOT).setDisplayName("§6Gold").build();

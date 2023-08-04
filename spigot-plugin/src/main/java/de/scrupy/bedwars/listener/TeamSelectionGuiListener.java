@@ -13,10 +13,12 @@ import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.ItemStack;
 
 public class TeamSelectionGuiListener implements Listener {
+    private final Game game;
     private final TeamSelectionGui teamSelectionGui;
     private final PlayerTeamHandler playerTeamHandler;
 
-    public TeamSelectionGuiListener(TeamSelectionGui teamSelectionGui, PlayerTeamHandler playerTeamHandler) {
+    public TeamSelectionGuiListener(Game game, TeamSelectionGui teamSelectionGui, PlayerTeamHandler playerTeamHandler) {
+        this.game = game;
         this.teamSelectionGui = teamSelectionGui;
         this.playerTeamHandler = playerTeamHandler;
     }
@@ -30,7 +32,7 @@ public class TeamSelectionGuiListener implements Listener {
             if (itemStack == null)
                 return;
 
-            if (Game.getInstance().getGameState() != GameState.LOBBY)
+            if (game.getGameState() != GameState.LOBBY)
                 return;
 
             Player player = (Player) clickEvent.getWhoClicked();

@@ -13,10 +13,11 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
 
 public class PlayerJoinListener implements Listener {
-
+    private final Game game;
     private final PlayerHandler playerHandler;
 
-    public PlayerJoinListener(PlayerHandler playerHandler) {
+    public PlayerJoinListener(Game game, PlayerHandler playerHandler) {
+        this.game = game;
         this.playerHandler = playerHandler;
     }
 
@@ -26,8 +27,6 @@ public class PlayerJoinListener implements Listener {
         String playerName = player.getName();
 
         playerHandler.handleJoin(player);
-
-        Game game = Game.getInstance();
 
         if (game.getGameState() == GameState.LOBBY) {
             if (!game.getCountdown().isRunning() && shouldStartLobbyCountdown()) {
