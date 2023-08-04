@@ -18,6 +18,9 @@ messages:
   # Message shown to a player when they attempt to join a team they are already part of
   alreadyJoinedTeamMessage: "%p you already joined this team."
 
+  # Message shown up to all players when lobby countdown is running.
+  lobbyCountdownRemainingTime: "%p game starts in {0} &7seconds."
+
 names:
   # Title for the Team Selection GUI
   teamSelectionGuiTitle: "&6&lTeam-Selector"
