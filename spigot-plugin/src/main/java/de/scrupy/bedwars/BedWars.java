@@ -5,7 +5,6 @@ import de.scrupy.bedwars.player.PlayerHandler;
 import de.scrupy.bedwars.team.PlayerTeamHandler;
 import de.scrupy.bedwars.team.TeamManager;
 import de.scrupy.bedwars.team.TeamSelectionGui;
-import de.scrupy.bedwars.util.PlayerAttributes;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 

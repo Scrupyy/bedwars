@@ -4,6 +4,7 @@ import de.scrupy.bedwars.config.GameSettingsConfig;
 import de.scrupy.bedwars.countdown.LobbyCountdown;
 import de.scrupy.bedwars.map.MapLoader;
 import de.scrupy.bedwars.map.MapTeleport;
+import de.scrupy.bedwars.map.MaterialSpawnerManager;
 import de.scrupy.bedwars.team.TeamManager;
 import de.scrupy.bedwars.util.Countdown;
 import de.scrupy.common.map.GameMap;
@@ -14,7 +15,6 @@ import javax.annotation.Nullable;
 public class Game {
     private final GameSettingsConfig gameSettingsConfig;
     private final TeamManager teamManager;
-    private final MapTeleport mapTeleport;
     private GameState gameState;
     private GameMap gameMap;
     private Countdown countdown;
@@ -24,8 +24,7 @@ public class Game {
         this.gameState = GameState.LOBBY;
         this.gameSettingsConfig = GameSettingsConfig.getInstance();
         this.gameMap = loadMap();
-        this.mapTeleport = new MapTeleport(teamManager, gameMap);
-        this.countdown = new LobbyCountdown(gameSettingsConfig.getInteger("lobbyCountdownTime"), mapTeleport);
+        this.countdown = new LobbyCountdown(gameSettingsConfig.getInteger("lobbyCountdownTime"), this);
     }
 
     private GameMap loadMap() {
@@ -50,6 +49,12 @@ public class Game {
         }
 
         gameState = GameState.INGAME;
+
+        MapTeleport mapTeleport = new MapTeleport(teamManager, gameMap);
+        mapTeleport.teleportAllTeams();
+
+        MaterialSpawnerManager materialSpawnerManager = new MaterialSpawnerManager(gameMap);
+        materialSpawnerManager.startSpawner();
     }
 
     public GameState getGameState() {

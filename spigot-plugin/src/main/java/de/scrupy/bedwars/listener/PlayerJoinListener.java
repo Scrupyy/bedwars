@@ -25,15 +25,16 @@ public class PlayerJoinListener implements Listener {
     public void onJoin(PlayerJoinEvent joinEvent) {
         Player player = joinEvent.getPlayer();
         String playerName = player.getName();
+        joinEvent.setJoinMessage(null);
 
         playerHandler.handleJoin(player);
 
         if (game.getGameState() == GameState.LOBBY) {
+            Bukkit.broadcastMessage(GameConfig.getInstance().getMessage("playerJoinMessage", playerName));
+
             if (!game.getCountdown().isRunning() && shouldStartLobbyCountdown()) {
                 game.getCountdown().start();
             }
-
-            joinEvent.setJoinMessage(GameConfig.getInstance().getMessage("playerJoinMessage", playerName));
         }
     }
 
