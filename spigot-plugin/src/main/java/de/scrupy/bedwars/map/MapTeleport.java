@@ -27,7 +27,7 @@ public class MapTeleport {
             throw new IllegalStateException("GameMap has not been initialized.");
         }
 
-        List<Team> teams = teamManager.getAvailableTeams();
+        List<Team> teams = new ArrayList<>(teamManager.getAvailableTeams());
         Map<String, GameMapLocation> teamSpawns = new HashMap<>(gameMap.getTeamSpawns());
 
         teleportTeamsToSpawnByColor(teams, teamSpawns);
