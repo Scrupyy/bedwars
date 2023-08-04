@@ -2,6 +2,7 @@ package de.scrupy.bedwars.scoreboard;
 
 import de.scrupy.bedwars.Game;
 import de.scrupy.bedwars.config.GameConfig;
+import de.scrupy.bedwars.team.TeamManager;
 import de.scrupy.common.map.GameMap;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
@@ -11,8 +12,8 @@ public class LobbyScoreboard extends GameScoreboard {
     private static final String CURRENT_TEAM_NAME = "currentTeam";
     private static final String SCOREBOARD_PLACEHOLDER_KEY = "scoreboardPlaceholder";
 
-    public LobbyScoreboard() {
-        super();
+    public LobbyScoreboard(TeamManager teamManager) {
+        super(teamManager);
         addTeams();
         setScores();
     }

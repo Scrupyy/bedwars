@@ -19,8 +19,8 @@ public class BedWars extends JavaPlugin {
         saveConfig();
 
         //create dependencies
-        PlayerHandler playerHandler = new PlayerHandler();
         TeamManager teamManager = new TeamManager();
+        PlayerHandler playerHandler = new PlayerHandler(teamManager);
         TeamSelectionGui teamSelectionGui = new TeamSelectionGui(teamManager);
         PlayerTeamHandler playerTeamHandler = new PlayerTeamHandler();
 
