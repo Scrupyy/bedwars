@@ -5,6 +5,8 @@ import de.scrupy.bedwars.countdown.LobbyCountdown;
 import de.scrupy.bedwars.map.MapLoader;
 import de.scrupy.bedwars.map.MapTeleport;
 import de.scrupy.bedwars.map.MaterialSpawnerManager;
+import de.scrupy.bedwars.team.PlayerTeamHandler;
+import de.scrupy.bedwars.team.RandomTeamPicker;
 import de.scrupy.bedwars.team.TeamManager;
 import de.scrupy.bedwars.util.Countdown;
 import de.scrupy.common.map.GameMap;
@@ -14,12 +16,14 @@ import javax.annotation.Nullable;
 
 public class Game {
     private final GameSettingsConfig gameSettingsConfig;
+    private final PlayerTeamHandler playerTeamHandler;
     private final TeamManager teamManager;
     private GameState gameState;
     private GameMap gameMap;
     private Countdown countdown;
 
-    public Game(TeamManager teamManager) {
+    public Game(PlayerTeamHandler playerTeamHandler, TeamManager teamManager) {
+        this.playerTeamHandler = playerTeamHandler;
         this.teamManager = teamManager;
         this.gameState = GameState.LOBBY;
         this.gameSettingsConfig = GameSettingsConfig.getInstance();
@@ -49,6 +53,9 @@ public class Game {
         }
 
         gameState = GameState.INGAME;
+
+        RandomTeamPicker randomTeamPicker = new RandomTeamPicker(playerTeamHandler, teamManager);
+        randomTeamPicker.pickRandomTeamForPlayersWithoutTeam();
 
         MapTeleport mapTeleport = new MapTeleport(teamManager, gameMap);
         mapTeleport.teleportAllTeams();
