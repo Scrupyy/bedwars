@@ -3,6 +3,7 @@ package de.scrupy.bedwars.player;
 import de.scrupy.bedwars.Game;
 import de.scrupy.bedwars.GameState;
 import de.scrupy.bedwars.lobby.LobbyItem;
+import de.scrupy.bedwars.scoreboard.IngameScoreboard;
 import de.scrupy.bedwars.scoreboard.LobbyScoreboard;
 import de.scrupy.bedwars.team.PlayerTeamHandler;
 import de.scrupy.bedwars.team.TeamManager;
@@ -24,6 +25,15 @@ public class PlayerHandler {
 
     public void handleJoin(Player player) {
         setupPlayer(player);
+    }
+
+    public void handleGameStateChange(Player player, GameState gameState) {
+        playerAttributes.setAttributes(player, false);
+        if (gameState == GameState.INGAME) {
+            IngameScoreboard ingameScoreboard = new IngameScoreboard(teamManager, playerTeamHandler);
+            ingameScoreboard.setScoreboard(player);
+            player.getInventory().clear();
+        }
     }
 
     private void setupPlayer(Player player) {

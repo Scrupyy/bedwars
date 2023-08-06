@@ -2,10 +2,10 @@ package de.scrupy.bedwars;
 
 import de.scrupy.bedwars.config.GameSettingsConfig;
 import de.scrupy.bedwars.countdown.LobbyCountdown;
+import de.scrupy.bedwars.event.GameStateChangeEvent;
 import de.scrupy.bedwars.map.MapLoader;
 import de.scrupy.bedwars.map.MapTeleport;
 import de.scrupy.bedwars.map.MaterialSpawnerManager;
-import de.scrupy.bedwars.scoreboard.IngameScoreboard;
 import de.scrupy.bedwars.team.PlayerTeamHandler;
 import de.scrupy.bedwars.team.RandomTeamPicker;
 import de.scrupy.bedwars.team.TeamManager;
@@ -62,15 +62,16 @@ public class Game {
         MaterialSpawnerManager materialSpawnerManager = new MaterialSpawnerManager(gameMap);
         materialSpawnerManager.startSpawner();
 
-        Bukkit.getOnlinePlayers().forEach(player -> {
-            new IngameScoreboard(teamManager, playerTeamHandler).setScoreboard(player);
-        });
-
-        gameState = GameState.INGAME;
+        setGameState(GameState.INGAME);
     }
 
     public GameState getGameState() {
         return gameState;
+    }
+
+    private void setGameState(GameState gameState) {
+        this.gameState = gameState;
+        Bukkit.getPluginManager().callEvent(new GameStateChangeEvent(gameState));
     }
 
     @Nullable

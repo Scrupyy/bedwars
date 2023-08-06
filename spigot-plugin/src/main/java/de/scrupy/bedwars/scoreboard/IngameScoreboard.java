@@ -26,7 +26,7 @@ public class IngameScoreboard extends GameScoreboard {
         for (Team team : teamManager.getAvailableTeams()) {
             org.bukkit.scoreboard.Team scoreboardTeam = getScoreboard().registerNewTeam("scoreboard_" + team.getName());
             scoreboardTeam.setPrefix(team.getColoredName());
-            scoreboardTeam.setSuffix("§a§l✓");
+            scoreboardTeam.setSuffix(" §a§l✓");
             scoreboardTeam.addEntry(team.getColor() + "");
         }
     }

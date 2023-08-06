@@ -15,7 +15,7 @@ public class PlayerAttributes {
     public void setAttributes(Player player, boolean shouldSetAsSpectator) {
         if (shouldSetAsSpectator) {
             setDefaultAttributes(player);
-            player.setGameMode(GameMode.ADVENTURE);
+            player.setGameMode(GameMode.SPECTATOR);
             return;
         }
         if (game.getGameState() == GameState.LOBBY) {
@@ -27,7 +27,6 @@ public class PlayerAttributes {
             setDefaultAttributes(player);
             player.setGameMode(GameMode.SURVIVAL);
         }
-
     }
 
     private void setDefaultAttributes(Player player) {
