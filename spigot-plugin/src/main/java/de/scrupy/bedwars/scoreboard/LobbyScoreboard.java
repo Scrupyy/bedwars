@@ -1,6 +1,7 @@
 package de.scrupy.bedwars.scoreboard;
 
 import de.scrupy.bedwars.config.GameConfig;
+import de.scrupy.bedwars.team.PlayerTeamHandler;
 import de.scrupy.bedwars.team.TeamManager;
 import de.scrupy.common.map.GameMap;
 import org.bukkit.ChatColor;
@@ -12,8 +13,8 @@ public class LobbyScoreboard extends GameScoreboard {
     private static final String SCOREBOARD_PLACEHOLDER_KEY = "scoreboardPlaceholder";
     private final GameMap gameMap;
 
-    public LobbyScoreboard(GameMap gameMap, TeamManager teamManager) {
-        super(teamManager);
+    public LobbyScoreboard(GameMap gameMap, TeamManager teamManager, PlayerTeamHandler playerTeamHandler) {
+        super(teamManager, playerTeamHandler);
         this.gameMap = gameMap;
         addTeams();
         setScores();

@@ -19,6 +19,6 @@ public class PlayerJoinTeamListener implements Listener {
         teamSelectionGui.updateGui();
 
         LobbyScoreboard.updateTeam(event.getPlayer(), event.getTeam());
-        GameScoreboard.updateScoreboardTeam(event.getTeam(), event.getPlayer());
+        GameScoreboard.updatePlayerTablistTeam(event.getTeam(), event.getPlayer());
     }
 }

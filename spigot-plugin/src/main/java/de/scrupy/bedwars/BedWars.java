@@ -22,7 +22,7 @@ public class BedWars extends JavaPlugin {
         TeamManager teamManager = new TeamManager();
         PlayerTeamHandler playerTeamHandler = new PlayerTeamHandler();
         Game game = new Game(playerTeamHandler, teamManager);
-        PlayerHandler playerHandler = new PlayerHandler(game, teamManager);
+        PlayerHandler playerHandler = new PlayerHandler(game, teamManager, playerTeamHandler);
         TeamSelectionGui teamSelectionGui = new TeamSelectionGui(teamManager);
 
         // register listener
