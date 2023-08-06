@@ -35,7 +35,7 @@ public class IngameScoreboard extends GameScoreboard {
         Bukkit.getOnlinePlayers().forEach(player -> {
             org.bukkit.scoreboard.Team scoreboardTeam = player.getScoreboard().getTeam("scoreboard_" + team.getName());
             if (scoreboardTeam != null)
-                scoreboardTeam.setSuffix("§4§lX");
+                scoreboardTeam.setSuffix(" §4§lX");
         });
     }
 }

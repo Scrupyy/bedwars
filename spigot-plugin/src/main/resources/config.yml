@@ -21,6 +21,12 @@ messages:
   # Message shown up to all players when lobby countdown is running.
   lobbyCountdownRemainingTime: "%p game starts in {0} &7seconds."
 
+  # Message shown up when a player breaks bed of team
+  bedDestroyedMessage: "%p The bed of team {0} &7was destroyed."
+
+  # Message send to player when he tries to destroy his own bed
+  selfDestructBedAttemptMessage: "%p You can not destroy your own bed."
+
 names:
   # Title for the Team Selection GUI
   teamSelectionGuiTitle: "&6&lTeam-Selector"

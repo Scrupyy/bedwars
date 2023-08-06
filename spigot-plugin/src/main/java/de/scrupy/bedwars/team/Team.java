@@ -14,12 +14,14 @@ public class Team {
     private final Material coloredWool;
     private final List<Player> players;
     private int maxPlayers;
+    private boolean bedDestroyed;
 
     public Team(String name, ChatColor color, Material coloredWool) {
         this.name = name;
         this.color = color;
         this.coloredWool = coloredWool;
         this.players = new ArrayList<>();
+        this.bedDestroyed = false;
     }
 
     public String getName() {
@@ -44,6 +46,14 @@ public class Team {
 
     public int getMaxPlayers() {
         return maxPlayers;
+    }
+
+    public void setBedDestroyed(boolean bedDestroyed) {
+        this.bedDestroyed = bedDestroyed;
+    }
+
+    public boolean isBedDestroyed() {
+        return bedDestroyed;
     }
 
     protected void addPlayer(Player player) {
