@@ -5,6 +5,7 @@ import de.scrupy.bedwars.countdown.LobbyCountdown;
 import de.scrupy.bedwars.map.MapLoader;
 import de.scrupy.bedwars.map.MapTeleport;
 import de.scrupy.bedwars.map.MaterialSpawnerManager;
+import de.scrupy.bedwars.scoreboard.IngameScoreboard;
 import de.scrupy.bedwars.team.PlayerTeamHandler;
 import de.scrupy.bedwars.team.RandomTeamPicker;
 import de.scrupy.bedwars.team.TeamManager;
@@ -52,8 +53,6 @@ public class Game {
             return;
         }
 
-        gameState = GameState.INGAME;
-
         RandomTeamPicker randomTeamPicker = new RandomTeamPicker(playerTeamHandler, teamManager);
         randomTeamPicker.pickRandomTeamForPlayersWithoutTeam();
 
@@ -62,6 +61,12 @@ public class Game {
 
         MaterialSpawnerManager materialSpawnerManager = new MaterialSpawnerManager(gameMap);
         materialSpawnerManager.startSpawner();
+
+        Bukkit.getOnlinePlayers().forEach(player -> {
+            new IngameScoreboard(teamManager, playerTeamHandler).setScoreboard(player);
+        });
+
+        gameState = GameState.INGAME;
     }
 
     public GameState getGameState() {
