@@ -1,8 +1,8 @@
 package de.scrupy.bedwars.listener;
 
 import de.scrupy.bedwars.event.PlayerJoinTeamEvent;
-import de.scrupy.bedwars.scoreboard.GameScoreboard;
 import de.scrupy.bedwars.scoreboard.LobbyScoreboard;
+import de.scrupy.bedwars.scoreboard.PlayerTablist;
 import de.scrupy.bedwars.team.TeamSelectionGui;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -19,6 +19,6 @@ public class PlayerJoinTeamListener implements Listener {
         teamSelectionGui.updateGui();
 
         LobbyScoreboard.updateTeam(event.getPlayer(), event.getTeam());
-        GameScoreboard.updatePlayerTablistTeam(event.getTeam(), event.getPlayer());
+        PlayerTablist.updatePlayerTablistTeam(event.getTeam(), event.getPlayer());
     }
 }
